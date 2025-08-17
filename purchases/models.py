@@ -167,10 +167,20 @@ class Purchase(AbstractArticleDateTimeModel):
         blank=True,
     )
 
+    profile = models.ForeignKey(
+        "marketplace_profiles.MarketplaceProfile",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="purchases",
+        verbose_name=_("Профиль выкупа"),
+        db_index=True,
+        db_column="profile_id",
+    )
+
     class Meta:
         managed = False
         db_table = "purchases"
-        ordering = ("-created_at",)
 
     def __str__(self) -> str:
         return "<Purchase %(id)d, %(article)s, %(status)s, %(address)s>" % {

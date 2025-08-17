@@ -14,6 +14,7 @@ class AbstractDateTimeModel(models.Model):
 
     class Meta:
         abstract = True
+        ordering = ("-created_at",)
 
 
 class AbstractArticleDateTimeModel(AbstractDateTimeModel):
